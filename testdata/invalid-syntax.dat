@@ -1,0 +1,359 @@
+# This file contains test data for implementations to verify that
+# CVE IDs are properly parsed and handled to conform with the
+# 2014 CVE ID Syntax change.
+#
+# About this test data: README-tests.txt
+# More info: http://cve.mitre.org/cve/identifiers/syntaxchange.html
+#
+#
+# ****** SYNTAX VIOLATIONS ******
+#
+# Option A syntax from early 2013 - option not chosen.  These might look
+# good at first glance, but have leading 0's with more than 4 digits.
+#
+CVE-2014-000001
+CVE-2014-009999
+CVE-2014-000001
+CVE-2014-000999
+CVE-2014-001234
+CVE-2014-009999
+CVE-2014-010000
+CVE-2014-054321
+CVE-2014-099999
+#
+# Option A' syntax - modified Option A for second vote - option not chosen.
+# Similar to original Option A, there are leading 0's with more than 4 digits.
+#
+CVE-2014-00000001
+CVE-2014-00000999
+CVE-2014-00001234
+CVE-2014-00009999
+CVE-2014-00010000
+CVE-2014-00123456
+CVE-2014-01234567
+#
+# Option C syntax from early 2013 - option not chosen
+#
+CVE-2014-1-8
+CVE-2014-999-3
+CVE-2014-1234-3
+CVE-2014-9999-3
+CVE-2014-10000-8
+CVE-2014-54321-5
+CVE-2014-123456-5
+CVE-2014-999999-5
+CVE-2014-1234567-4
+#
+# Intentionally valid ID.  This is the only valid ID in this file, and
+# it's intended to help spot incorrect tests that mistakenly reject
+# all inputs.  See README.
+#
+CVE-2014-1234
+#
+# Miscellaneous examples used during discussion of syntax
+#
+CVE-YYYY-NNNN
+CVE-YYYY-NNNNN
+CVE-YYYY-NNNNNN
+#
+# Loose extraction assuming only CVE prefix and two alphanumerics
+# separated by hyphens
+#
+CVE-SRC-OHA
+CVE-2AAA-3BBB
+#
+# Missing sequence number / invalid year
+#
+CVE-114
+CVE-73
+#
+# Malformed sequence number
+#
+CVE-2014-789
+CVE-2014-
+CVE-2014-9
+CVE-2014-98
+#
+# leading 0's - prohibited except for 999 and less (i.e., "0001"
+# through "0999"
+#
+CVE-2015-010000
+CVE-2015-09999
+CVE-2014-00001
+#
+# CR/LF in middle of ID
+#
+CVE-2014-
+1234
+CVE-2014
+-1234
+CVE-201
+4-1235
+#
+# no year provided
+#
+CVE-3153
+#
+# position-oriented (assume columns 5 through 8 are year).  The first one
+# is a real-world conversion error by CVE code (oops).
+#
+CVE-  14-1236
+CVE-AAAA-1237
+#
+# missing/invalid "CVE-" prefix
+#
+C-2014-1238
+2014-1240
+CVE:2014-1241
+CVE 2014 1242
+#
+# invalid year
+#
+CVE-201-0771
+CVE-14-1239
+CVE-20132-0169
+#
+# Odd stuff straight from CVE web logs (thanks, random anonymous
+# people!).  Includes some real-world typos or, in some cases,
+# security-related IDs that utilize portions of the CVE ID.
+#
+2013
+0497
+2010-270
+2013-199
+2013-6XXX
+CVE2014-0591
+CVE:13-7108
+CVE-XXXX-XXXX
+CVE-TODO
+1421010/13
+CVE20076753
+CVE:2013-4547
+(CVE-2013-136
+CVE - 2006 - 0788
+CVE-2008-600
+199-0618
+CVE-199-0618
+CA-2003-16
+# URL-encoded
++CVE+-+2006+-+0788
+CVE-2013%2D4345
+CVE -20093103
+CVE-'2014-1610
+CVE--2009-3555
+CVE-1999-077
+CVE-2006.1737
+CVE-20076-4704
+CVE-2010--0281
+CVE-2010-
+CVE-2013-*
+CVE-2013-167`
+CVE-2013-00XX
+CVE-2013--4339
+CVE-2013-****
+CVE-2013-3.893
+CVE-CVE:2013-4883
+CVE-CVE-2013-4883
+CVE2010-3333.J
+2013-A-0196
+CVE-2013-A-0196
+#
+# common shorthand for multiple IDs
+#
+CVE-2007-{4352,5392,5393}
+CVE:2012-0013
+CVE_2013-7063
+E-2011-3192
+EXPLOIT-CVE2013-2465
+VE-2012-0158
+VE-2013-5875C
+ZDI-12-170
+CVE-YYYY-XXXX
+CVE-2012=1234
+#
+# these originated in late 1999/early 2000 era
+#
+GENERIC-MAP-NOMATCH
+CVE-MAP-NOMATCH
+CVE-NO-MATCH
+CVE-NO-NAME
+CVE-NONE-0662
+#
+# Arbitrary 13-character string
+#
+ABCDEFGHIJKLM
+#
+# NOCVE identifiers, e.g., http://cs.coresecurity.com/core-impact-pro/exploits?page=11
+#
+NOCVE-9999-54104
+NOCVE-9999-46110
+CVE-9999-1
+CVE-9999-11
+CVE-9999-111
+#
+# erroneous attempts to convert certain homoglyphs / Unicode to 7-bit
+# ASCII
+CVE?2014?0001
+#
+# mashups of CVEs and telephone numbers
+#
+CVE-555-1212
+CVE-800-555-1212
+CVE-1-800-555-1212
+#
+# mashups of CVEs and Jenny
+#
+CVE-867-5309
+CVE-867-5309(1981)
+#
+# extraneous spaces (very common in disclosures from multiple sources)
+#
+CVE-2014- 0001
+CVE- 2014-0001
+CVE- 2014- 0001
+CVE-2014- 13001
+CVE- 2014-13001
+CVE- 2014- 13001
+#
+# non-dash format (widely used by IBM ISS X-Force, e.g., the http://xforce.iss.net/xforce/xfdb/89235 page)
+#
+CVE20140001
+cve20140001
+CVE201413001
+cve201413001
+#
+# traditional VUPEN style - which happens to match CVE except for the
+# "ADV-" prefix instead of "CVE-"
+#
+ADV-2006-0001
+#
+# exploit-db.com format
+#
+CVE: 2014-0001
+CVE: 2014-13001
+#
+# OSVDB format
+#
+CVE ID: 2014-0001
+CVE ID: 2014-13001
+2014-0001
+2014-13001
+#
+# results of bad global search/replace of CVE with CVE&reg;
+# (registered trademark symbol)
+#
+CVE&reg;-2014-0001
+#
+# attempts at XML conversion
+#
+<CVE>-2014-0001
+<CVE>2014-0001
+<CVE>2014-0001</CVE>
+<CVE>2014-0001</>
+#
+# attempts at JSON conversion
+#
+"CVE": "2014-0001"
+"cve": "2004-0001"
+"CVE":"2014-0001"
+"cve":"2004-0001"
+#
+# use of the letter 'O' instead of the number '0'
+#
+CVE-2014-OOO1
+CVE-2O14-0001
+#
+# use of the letter 'l' instead of the number '1'
+#
+CVE-2014-000l
+CVE-20l4-0001
+#
+# regular expressions or various other groupings
+#
+CVE-2014-130[12]
+CVE-[0-9]{4}-[0-9]{4}
+CVE-[0-9]{4,}-[0-9]{4,}
+# "sticky" keyboards
+#
+CVEE-2014-0001
+CVEEEEEEE-2014-0001
+# attempts at plurals
+#
+CVEs-2014-0001 and 2014-0002
+# misplaced organizational specifiers
+#
+CVE[MITRE]-2014-0001
+CVE[Mitre]-2014-0001
+# confusion with National Vulnerability Database
+#
+NVD-2014-0001
+# confusion with Defense Vulnerability Database
+#
+DVD-2014-0001
+# confusion with other organizations
+#
+CERT-2014-0001
+JVN-2014-0001
+JVNDB-2014-000001
+# intraword footnotes
+#
+CVE[1]-2014-0001
+CVE*-2014-0001
+CVE**-2014-0001
+# Literal tab character.
+#
+CVE	2014-0001
+# erroneous generation of a -1 value
+#
+CVE-2014--1
+# erroneous generation of a zero value
+#
+CVE-2014-0
+# ordering confusion
+#
+2014-0001-CVE
+# this is technically valid syntax, but since the year can never be before
+# 1999, this could be rejected based on CVE "business rules".
+CVE-0001-2014
+# wildcards or meta-expressions
+#
+CVE-2014-*
+CVE-2014-####
+CVE-2014-****
+CVE-2014-?
+CVE-2014-????
+CVE-2014*
+CVE-2014?
+# extraneous dashes
+#
+CVE-2014--0001
+CVE--2014-0001
+# typos of dash
+#
+CVE=2014=0001
+CVE0201400001
+# various uncategorized examples
+#
+CVE_2014_0001
+CVE-ID-2014-0001
+CVEID-2014-0001
+CVE#2014-0001
+CVE# 2014-0001
+CVEID#2014-0001
+CVEID# 2014-0001
+CVE-ID#2014-0001
+CVE-ID# 2014-0001
+CVE#2014-0001
+CVE# 2014-0001
+CEV-2014-0001
+VCE-2014-0001
+VEC-2014-0001
+CWE-2014-0001
+CPE-2014-0001
+CME-2014-0001
+CE-2014-0001
+VE-2014-0001
+E-2014-0001
+-2014-0001
+CVE-2014-000{1,2}
+CVE/MITRE-2014-0001

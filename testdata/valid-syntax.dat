@@ -1,0 +1,64 @@
+# This file contains test data for implementations to verify that
+# CVE IDs are properly parsed and handled to conform with the
+# 2014 CVE ID Syntax change.
+#
+# About this test data: README-tests.txt
+# More info: http://cve.mitre.org/cve/identifiers/syntaxchange.html
+#
+# ****** VALID SYNTAX ******
+#
+# Publicly-referenced IDs for the new syntax (formerly "Option B")
+#
+CVE-2014-0001
+CVE-2014-0999
+CVE-2014-1234
+CVE-2014-3127
+CVE-2014-9999
+CVE-2014-10000
+CVE-2014-54321
+CVE-2014-99999
+CVE-2014-100000
+CVE-2014-123456
+CVE-2014-456132
+CVE-2014-999999
+CVE-2014-1000000
+CVE-2014-1234567
+CVE-2014-7654321
+CVE-2014-9999999
+#
+# Invalid ID.  This is the only invalid ID in this file, and it's
+# intended to help spot incorrect tests that mistakenly accept all
+# inputs.  See README.
+#
+CVE-ABCD-EFGH
+#
+# These are valid but could cause problems if IDs are stored in bytes
+# due to numeric overflows (stranger things have happened).
+#
+CVE-2014-16385
+CVE-2014-32769
+CVE-2014-65537
+CVE-2014-131073
+#
+# unusually large number of trailing zeros
+#
+CVE-2014-100000000
+#
+# storing CVE number portion as 32-bit signed integer (seen in at
+# least one real-world implementation)
+#
+CVE-2014-2147483647
+CVE-2014-2147483648
+#
+# storing CVE number portion as 32-bit unsigned integer (possibly seen
+# in at least one real-world implementation)
+#
+CVE-2014-4294967295
+CVE-2014-4294967296
+#
+# storing CVE ID string in a fixed-length 32-byte buffer, with or
+# without a required trailing '\0' character
+#
+CVE-2014-1111111111111111111111
+CVE-2014-11111111111111111111111
+CVE-2014-111111111111111111111111
