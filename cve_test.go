@@ -148,3 +148,17 @@ func TestString(t *testing.T) {
 		t.Fatalf(`String() = %q, %v, want match for %#q, nil`, s, err, want)
 	}
 }
+
+// TestURL tests the URL method. Similar to the String method,
+// there is no real way this method can fail because CVe instances
+// are rigorously vetted prior to instantiation. Nonetheless,
+// we will give it a go just to say we tested it.
+func TestURL(t *testing.T) {
+	s := "CVE-2014-9999999"
+	want := "https://nvd.nist.gov/vuln/detail/CVE-2014-9999999"
+	cve, err := Parse(s)
+	url, err := cve.URL()
+	if want != url.String() || err != nil {
+		t.Fatalf(`URL() = %q, %v, want match for %#q, nil`, s, err, want)
+	}
+}
