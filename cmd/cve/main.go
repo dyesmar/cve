@@ -26,7 +26,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/yesmar/cve"
+	"github.com/dyesmar/cve"
 )
 
 func main() {
