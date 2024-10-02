@@ -29,6 +29,35 @@ type CVE struct {
 	sequence uint // Sequence number.
 }
 
+// Year returns the CVE's year.
+func (c *CVE) Year() uint {
+	return c.year
+}
+
+// Year returns the CVE's sequence.
+func (c *CVE) Sequence() uint {
+	return c.sequence
+}
+
+// String returns the string reprentation of the receiver.
+func (c *CVE) String() string {
+	return fmt.Sprintf("CVE-%d-%04d", c.year, c.sequence)
+}
+
+// URL returns the NVD URL representation of the receiver.
+func (c *CVE) URL() (*url.URL, error) {
+	return url.Parse(baseURL + c.String())
+}
+
+// MarkdownLink returns the Markdown link representation of the receiver.
+func (c *CVE) MarkdownLink() (string, error) {
+	url, err := c.URL()
+	if err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("[%s](%s)", c.String(), url), nil
+}
+
 // New creates a new CVE identifier from the caller-supplied year part
 // and sequence number.
 func New(year, sequence uint) (*CVE, error) {
@@ -85,23 +114,4 @@ func Parse(s string) (*CVE, error) {
 	}
 	return New(uint(year), uint(sequence))
 
-}
-
-// String returns the string reprentation of the receiver.
-func (c *CVE) String() string {
-	return fmt.Sprintf("CVE-%d-%04d", c.year, c.sequence)
-}
-
-// URL returns the NVD URL representation of the receiver.
-func (c *CVE) URL() (*url.URL, error) {
-	return url.Parse(baseURL + c.String())
-}
-
-// MarkdownLink returns the Markdown link representation of the receiver.
-func (c *CVE) MarkdownLink() (string, error) {
-	url, err := c.URL()
-	if err != nil {
-		return "", err
-	}
-	return fmt.Sprintf("[%s](%s)", c.String(), url), nil
 }
