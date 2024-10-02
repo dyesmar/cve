@@ -94,11 +94,7 @@ func (c *CVE) String() string {
 
 // URL returns the NVD URL representation of the receiver.
 func (c *CVE) URL() (*url.URL, error) {
-	url, err := url.Parse(baseURL + c.String())
-	if err != nil {
-		return nil, err
-	}
-	return url, nil
+	return url.Parse(baseURL + c.String())
 }
 
 // MarkdownLink returns the Markdown link representation of the receiver.
