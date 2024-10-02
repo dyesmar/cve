@@ -136,7 +136,7 @@ func TestInvalid(t *testing.T) {
 	}
 }
 
-// TestInvalid tests Stringer conformance. There is no real way the
+// TestString tests Stringer conformance. There is no real way the
 // String method can fail since CVE's year and sequence fields were
 // rendered unexported. (The New and Parse methods handle all validation
 // up front.) Nonetheless, we will give it a go just to say we tested it.
