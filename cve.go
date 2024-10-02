@@ -98,11 +98,10 @@ func (c *CVE) URL() (*url.URL, error) {
 }
 
 // MarkdownLink returns the Markdown link representation of the receiver.
-// Invalid URLs will result in the empty string being returned.
-func (c *CVE) MarkdownLink() string {
+func (c *CVE) MarkdownLink() (string, error) {
 	url, err := c.URL()
 	if err != nil {
-		return ""
+		return "", err
 	}
-	return fmt.Sprintf("[%s](%s)", c.String(), url)
+	return fmt.Sprintf("[%s](%s)", c.String(), url), nil
 }
