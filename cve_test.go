@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -160,5 +161,46 @@ func TestURL(t *testing.T) {
 	url, err := cve.URL()
 	if want != url.String() || err != nil {
 		t.Fatalf(`URL() = %q, %v, want match for %#q, nil`, url.String(), err, want)
+	}
+}
+
+// TestMarkdownLink tests the MarkdownLink method. Similar to the
+// String and URL methods, there is no real way this method can fail
+// because CVE instances are rigorously vetted prior to instantiation.
+// Nonetheless, we will give it a go just to say we tested it.
+func TestMarkdownLink(t *testing.T) {
+	s := "CVE-2014-9999999"
+	cve, err := Parse(s)
+	if err != nil {
+		t.Fatalf("Parse(s) failed, unexpected error: %v", err)
+	}
+	url, err := cve.URL()
+	if err != nil {
+		t.Fatalf("cve.URL() failed, unexpected error: %v", err)
+	}
+
+	md, err := cve.MarkdownLink()
+	if err != nil {
+		t.Fatalf("cve.MarkdownLink() failed, unexpected error: %v", err)
+	}
+
+	type Link struct {
+		label string
+		url   string
+	}
+
+	xs := strings.FieldsFunc(md, func(r rune) bool {
+		return r == '[' || r == ']' || r == '(' || r == ')'
+	})
+	link := Link{xs[0], xs[1]}
+
+	// Compare link.label to s.
+	if link.label != s || err != nil {
+		t.Fatalf(`label = %q, %v, want match for %#q, nil`, link.label, err, s)
+	}
+
+	// Compare link.url to url.String()
+	if link.label != s || err != nil {
+		t.Fatalf(`url = %q, %v, want match for %#q, nil`, link.url, err, url.String())
 	}
 }
