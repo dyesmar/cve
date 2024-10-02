@@ -8,7 +8,7 @@ SPDX short identifier: [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.htm
 
 ## Installation
 
-Assuming you have [Go]() installed…
+Assuming you have [Go](https://go.dev/dl) installed…
 
 ```bash
 go get github.com/dyesmar/cve
