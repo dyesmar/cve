@@ -159,6 +159,6 @@ func TestURL(t *testing.T) {
 	cve, err := Parse(s)
 	url, err := cve.URL()
 	if want != url.String() || err != nil {
-		t.Fatalf(`URL() = %q, %v, want match for %#q, nil`, s, err, want)
+		t.Fatalf(`URL() = %q, %v, want match for %#q, nil`, url.String(), err, want)
 	}
 }
