@@ -96,7 +96,7 @@ func main() {
 			continue
 		}
 
-		cmd := exec.Command(browserHelper, url.String())
+		cmd := exec.Command(browserHelper, url.String()) // #nosec G204
 		err = cmd.Run()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s: %v: %v\n", program, url, err)
