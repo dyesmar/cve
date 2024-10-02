@@ -33,7 +33,7 @@ type CVE struct {
 // and sequence number.
 func New(year, sequence uint) (*CVE, error) {
 	currentYear := time.Now().Year()
-	if year < originYear || year > uint(currentYear) {
+	if year < originYear || year > uint(currentYear) /* #nosec G115 */ {
 		return nil, fmt.Errorf("year %d out of range", year)
 	}
 	if sequence < minimumSequence {
