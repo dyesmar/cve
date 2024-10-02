@@ -25,8 +25,8 @@ const (
 // Both are 64-bit unsigned values in anticipation of mass CVE filings
 // by our forthcoming AI overlords.
 type CVE struct {
-	Year     uint // Year part.
-	Sequence uint // Sequence number.
+	year     uint // Year part.
+	sequence uint // Sequence number.
 }
 
 // New creates a new CVE identifier from the caller-supplied year part
@@ -40,8 +40,8 @@ func New(year, sequence uint) (*CVE, error) {
 		return nil, fmt.Errorf("sequence %d out of range", sequence)
 	}
 	return &CVE{
-		Year:     year,
-		Sequence: sequence,
+		year:     year,
+		sequence: sequence,
 	}, nil
 }
 
@@ -89,7 +89,7 @@ func Parse(s string) (*CVE, error) {
 
 // String returns the string reprentation of the receiver.
 func (c *CVE) String() string {
-	return fmt.Sprintf("CVE-%d-%04d", c.Year, c.Sequence)
+	return fmt.Sprintf("CVE-%d-%04d", c.year, c.sequence)
 }
 
 // URL returns the NVD URL representation of the receiver.
