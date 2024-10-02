@@ -150,7 +150,7 @@ func TestString(t *testing.T) {
 }
 
 // TestURL tests the URL method. Similar to the String method,
-// there is no real way this method can fail because CVe instances
+// there is no real way this method can fail because CVE instances
 // are rigorously vetted prior to instantiation. Nonetheless,
 // we will give it a go just to say we tested it.
 func TestURL(t *testing.T) {
