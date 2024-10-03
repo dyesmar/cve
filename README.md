@@ -1,6 +1,6 @@
 # cve
 
-Package `cve` provides a consistent mechanism for parsing, storing, and using [CVE identifiers](https://cve.mitre.org) as specified by the MITRE Corporation.
+Package `cve` provides a consistent mechanism for parsing, storing, and using [CVE identifiers](https://cve.mitre.org) as specified by the MITRE Corporation. This package conforms to the 2014 CVE ID Syntax change.
 
 This code hit the cutting room floor from one of my private projects, so I thought I'd share.
 
